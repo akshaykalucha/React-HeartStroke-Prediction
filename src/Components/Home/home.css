@@ -1,8 +1,10 @@
 .info{
-    background-color: rgb(240, 242, 246);
     width: 698px;
     border-radius: 2px;
     font-size: 1rem;
+}
+.info:focus-within{
+    background-color: rgb(240, 242, 246);
 }
 .info input{
  float: left;   
