@@ -23,6 +23,7 @@ export class home extends Component {
         this.setState({ checked: !this.state.checked });
     }
     render() {
+        
         var mytxt = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nisi quasi, possimus enim magnam soluta accusamus beatae temporibus officia error animi dolorum voluptatum iste! Quidem, culpa ipsam! Necessitatibus, voluptatum expedita!"
         if(this.state.checked === true){
             console.log("checked")
