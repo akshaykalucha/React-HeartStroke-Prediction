@@ -22,7 +22,7 @@ export default function Values(props) {
                 "Time (follow-up-period)":1<br />
             </p>
             :
-            ""
+            "..."
             }
             <h3>{"}"}</h3>
         </div>
