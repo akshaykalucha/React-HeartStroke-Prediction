@@ -13,3 +13,6 @@
 .info p{
     padding-top: 1px;
 }
+.openCurly{
+    cursor: pointer;
+}

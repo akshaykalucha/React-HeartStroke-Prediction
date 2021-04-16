@@ -43,8 +43,9 @@ export class home extends Component {
                     <h2>These are the values you entered 🧑‍⚕</h2>
                 </div>
                 <div className="valuesDiv">
-                    {!this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-sort-down" style={{fontSize:15, opacity:0.6}}></i>:""}
-                    {this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-caret-right" style={{fontSize:15, opacity:0.6}}></i>:""}
+                    {!this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-sort-down openCurly" style={{fontSize:15, opacity:0.6}}></i>:""}
+                    {this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-caret-right openCurly
+                    " style={{fontSize:15, opacity:0.6}}></i>:""}
                     <Values open={this.state.Jsonchecked} name="akshay" />
                 </div>
                 <button>Predict</button>

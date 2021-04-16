@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
+import './Values.css'
 
 export default function Values(props) {
     console.log(props.open)
     return (
-        <div>
-            <h3>{"{"}</h3>
+        <div className="Jsoninfo">
             {!props.open ?
                 <p>
+                <p>{"{"}</p>
                 "Age":1
                 <br />
                 "Sex":"Male"<br />
@@ -20,11 +21,13 @@ export default function Values(props) {
                 "Serum sodium (mEq/L)":1<br />
                 "Smoking":"Yes"<br />
                 "Time (follow-up-period)":1<br />
+                <p>{"}"}</p>
             </p>
             :
-            "..."
+            <p>
+            {"{ ... }"}
+            </p>
             }
-            <h3>{"}"}</h3>
         </div>
     )
 }
