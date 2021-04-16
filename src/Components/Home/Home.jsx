@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
-import "./home.css"
+import "./home.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Values from './Values'
+import Values from './Values';
+import Sidebar from './Sidebar';
 
 
 // rgb(246, 51, 102)
@@ -28,27 +29,35 @@ export class home extends Component {
         }
         return (
             <div>
-                <div className="mainHeading">
-                    <h1>Prediction of Survival in Patients with Heart Failure</h1>
-                </div>
-                <div className="info">
-                    <input type="checkbox" name="check" checked={this.state.checked} onChange={this.handleCheckClick}/>
-                    <span className="checkmark"></span>
-                    <p>Information</p>
-                </div>
-                {this.state.checked ?<p>{mytxt}</p> : ""}
-                <div className="vals">
-                    <h2>How does it work ❓</h2>
-                    <p>Complete all the questions and the machine learning model will predict the survival of patients with heart failure</p>
-                    <h2>These are the values you entered 🧑‍⚕</h2>
-                </div>
-                <div className="valuesDiv">
-                    {!this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-sort-down openCurly" style={{fontSize:15, opacity:0.6}}></i>:""}
-                    {this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-caret-right openCurly
-                    " style={{fontSize:15, opacity:0.6}}></i>:""}
-                    <Values open={this.state.Jsonchecked} name="akshay" />
-                </div>
-                <button>Predict</button>
+                <div className="MainPage">
+                    <section className="SideBar">
+                        <Sidebar />
+                    </section>
+
+                    <section className="mainSection">
+                        <div className="mainHeading">
+                            <h1>Prediction of Survival in Patients with Heart Failure</h1>
+                        </div>
+                        <div className="info">
+                            <input type="checkbox" name="check" checked={this.state.checked} onChange={this.handleCheckClick}/>
+                            <span className="checkmark"></span>
+                            <p>Information</p>
+                        </div>
+                        {this.state.checked ?<p>{mytxt}</p> : ""}
+                        <div className="vals">
+                            <h2>How does it work ❓</h2>
+                            <p>Complete all the questions and the machine learning model will predict the survival of patients with heart failure</p>
+                            <h2>These are the values you entered 🧑‍⚕</h2>
+                        </div>
+                        <div className="valuesDiv">
+                            {!this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-sort-down openCurly" style={{fontSize:15, opacity:0.6}}></i>:""}
+                            {this.state.Jsonchecked ? <i onClick={this.checkJson} className="fas fa-caret-right openCurly
+                            " style={{fontSize:15, opacity:0.6}}></i>:""}
+                            <Values open={this.state.Jsonchecked} name="akshay" />
+                        </div>
+                        <button>Predict</button>
+                    </section>
+            </div>
             </div>
         )
     }
