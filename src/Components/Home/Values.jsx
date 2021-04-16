@@ -6,8 +6,9 @@ export default function Values(props) {
     return (
         <div className="Jsoninfo">
             {!props.open ?
-                <p>
+                <div>
                 <p>{"{"}</p>
+                <p>
                 "Age":1
                 <br />
                 "Sex":"Male"<br />
@@ -21,8 +22,9 @@ export default function Values(props) {
                 "Serum sodium (mEq/L)":1<br />
                 "Smoking":"Yes"<br />
                 "Time (follow-up-period)":1<br />
+                </p>
                 <p>{"}"}</p>
-            </p>
+            </div>
             :
             <p>
             {"{ ... }"}
