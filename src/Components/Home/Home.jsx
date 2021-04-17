@@ -39,7 +39,7 @@ export class home extends Component {
                             <h1>Prediction of Survival in Patients with Heart Failure</h1>
                         </div>
                         <div className="info">
-                            <input type="checkbox" name="check" checked={this.state.checked} onChange={this.handleCheckClick}/>
+                            <input type="checkbox" name="check" className="c4" checked={this.state.checked} onChange={this.handleCheckClick}/>
                             <span className="checkmark"></span>
                             <p>Information</p>
                         </div>

@@ -2,6 +2,35 @@ import React, { Component } from 'react';
 import './sidebar.css'
 
 export class Sidebar extends Component {
+    state={
+        diab: "No",
+        showDiab: false
+    }
+
+
+    showDiabVals =()=>{
+        if (!this.state.showDiab) {
+            // attach/remove event handler
+            document.addEventListener('click', this.handleOutsideClick, false);
+          } else {
+            document.removeEventListener('click', this.handleOutsideClick, false);
+          }
+      
+          this.setState(prevState => ({
+            showDiab: !prevState.showDiab,
+          }));
+    }
+
+    handleOutsideClick = (e) => {
+        // ignore clicks on the component itself
+        if (this.node.contains(e.target)) {
+          return;
+        }
+        
+        this.showDiabVals();
+      }
+    
+
     render() {
         return (
             <div className="SideForm">
@@ -22,18 +51,18 @@ export class Sidebar extends Component {
                             <label htmlFor="Age">Sex</label>
                             <div className="GenderRadioGroup RadioGroup">
                             <input type="radio" name="GenderRadio" value="male" id=""/>
-                            <label for="male">Male</label><br />
+                            <label htmlFor="male">Male</label><br />
                             <input type="radio" name="GenderRadio" value="female" id=""/>
-                            <label for="female">Female</label><br />
+                            <label htmlFor="female">Female</label><br />
                             </div>
                         </div>
                         <div className="AnemiaBox element-container">
                             <label htmlFor="Anemia">Anemia?</label>
                             <div className="RadioGroup AnemiaRadioGroup">
                             <input type="radio" name="AnemiaRadio" value="Yes" id=""/>
-                            <label for="male">Yes</label><br />
+                            <label htmlFor="male">Yes</label><br />
                             <input type="radio" name="AnemiaRadio" value="No" id=""/>
-                            <label for="No">No</label><br />
+                            <label htmlFor="No">No</label><br />
                             </div>
                         </div>
                         <div className="Creatine element-container">
@@ -45,6 +74,20 @@ export class Sidebar extends Component {
                                 <button>-</button>
                             </div>
                             </div>
+                        </div>
+                        <div ref={node => { this.node = node; }} className="Diabetes element-container">
+                            <label htmlFor="Diabetes">Diabetes</label>
+                            <div className="inputContainer">
+                                <input onClick={this.showDiabVals} readOnly type="Text" value="No" name="Creatine" id=""/>
+                            </div>
+                            {this.state.showDiab && (
+                            <div className="DibVals listbox">
+                                <ul className="listVals">
+                                    <li className="valYes">Yes</li>
+                                    <li className="valNo">No</li>
+                                </ul>
+                            </div>
+                            )}
                         </div>
                     </div>
                 </section>

@@ -11,16 +11,20 @@ body {
     width: 698px;
     border-radius: 2px;
     font-size: 1rem;
+    height: 22px;
 }
 .info:focus-within{
     background-color: rgb(240, 242, 246);
 }
 .info input{
- float: left;   
+    float: left;
+    font-size: 3rem;
+    width: 16px;
+    height: 16px;  
 }
 
 .info p{
-    padding-top: 1px;
+    padding-top: 3px;
 }
 .openCurly{
     cursor: pointer;
@@ -33,4 +37,10 @@ body {
     display: block;
     margin-right: auto;
     margin-left: auto;
+    max-width: 730px;
+    width: 100%;
+    box-sizing: border-box;
 }
+.c4{ 
+    filter: hue-rotate(90deg);  
+}  
