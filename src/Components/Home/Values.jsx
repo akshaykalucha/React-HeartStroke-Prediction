@@ -2,7 +2,7 @@ import React from 'react';
 import './Values.css'
 
 export default function Values(props) {
-    console.log(props.open)
+    // console.log(props.open)
     return (
         <div className="Jsoninfo">
             {!props.open ?

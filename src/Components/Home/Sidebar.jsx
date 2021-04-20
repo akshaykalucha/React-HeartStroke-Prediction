@@ -29,7 +29,11 @@ export class Sidebar extends Component {
         
         this.showDiabVals();
       }
-    
+      handleDiab = (event) => {
+          this.setState({
+            diab: event.currentTarget.dataset.id
+          })
+      }
 
     render() {
         return (
@@ -78,13 +82,13 @@ export class Sidebar extends Component {
                         <div ref={node => { this.node = node; }} className="Diabetes element-container">
                             <label htmlFor="Diabetes">Diabetes</label>
                             <div className="inputContainer">
-                                <input onClick={this.showDiabVals} readOnly type="Text" value="No" name="Creatine" id=""/>
+                                <input onClick={this.showDiabVals} readOnly type="Text" value={this.state.diab} name="Creatine" id=""/>
                             </div>
                             {this.state.showDiab && (
                             <div className="DibVals listbox">
                                 <ul className="listVals">
-                                    <li className="valYes">Yes</li>
-                                    <li className="valNo">No</li>
+                                    <li onClick={this.handleDiab} data-id="Yes" className="valYes">Yes</li>
+                                    <li onClick={this.handleDiab} data-id="No" className="valNo">No</li>
                                 </ul>
                             </div>
                             )}

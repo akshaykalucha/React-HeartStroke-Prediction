@@ -27,3 +27,7 @@ input::-webkit-inner-spin-button {
 .GenderRadioGroup{
     display: block;
 }
+.listVals li {
+    list-style: none;
+    cursor: pointer;
+}
