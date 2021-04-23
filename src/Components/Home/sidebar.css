@@ -21,6 +21,9 @@ input::-webkit-inner-spin-button {
 .sidebarView:hover{
     overflow-y: auto;
 }
+.sidebarView:not(:hover) {
+    overflow-y: hidden;
+}
 .Infoboxes{
     position: relative;
 }
