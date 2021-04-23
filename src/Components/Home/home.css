@@ -3,9 +3,24 @@ html,
 body {
 	height: 100%;
 	margin: 0;
-     
-
-
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(38,39,48,0);
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+.MainPage{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
 }
 .info{
     width: 698px;
@@ -30,9 +45,21 @@ body {
     cursor: pointer;
 }
 
-.MainPage{
-    display: flex;
+
+::-webkit-scrollbar {
+    width: 6px;
 }
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
 .mainSection{
     display: block;
     margin-right: auto;
