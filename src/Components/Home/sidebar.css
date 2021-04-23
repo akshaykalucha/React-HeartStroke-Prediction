@@ -6,6 +6,7 @@ input::-webkit-inner-spin-button {
 
 
 .sidebarView{
+    cursor: pointer;
     background-color: #f0f2f6;
     background-image: linear-gradient(180deg,#f0f2f6,#fafafa);
     background-attachment: fixed;
