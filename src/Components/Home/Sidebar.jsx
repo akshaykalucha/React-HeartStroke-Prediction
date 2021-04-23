@@ -93,6 +93,74 @@ export class Sidebar extends Component {
                             </div>
                             )}
                         </div>
+                        <div className="ejection_frac element-container">
+                            <label htmlFor="ejection_frac">Ejection fraction %</label>
+                            <div className="inputContainer">
+                            <input type="number" name="ejection_frac" id=""/>
+                            <div className="controls controlEjection">
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="BloodPressure element-container">
+                            <label htmlFor="BloodPressure">High blood pressure</label>
+                            <div className="RadioGroup BPRadioGroup">
+                            <input type="radio" name="BPRadio" value="Yes" id=""/>
+                            <label htmlFor="male">Yes</label><br />
+                            <input type="radio" name="BPRadio" value="No" id=""/>
+                            <label htmlFor="No">No</label><br />
+                            </div>
+                        </div>
+                        <div className="platlets element-container">
+                            <label htmlFor="platlets">Platelets (kiloplatelets/mL)</label>
+                            <div className="inputContainer">
+                            <input type="number" name="platlets" id=""/>
+                            <div className="controls controlPlatlets">
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="serumC element-container">
+                            <label htmlFor="serumC">Serum creatinine (mg/dL)</label>
+                            <div className="inputContainer">
+                            <input type="number" name="serumC" id=""/>
+                            <div className="controls controlSerumC">
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="serumS element-container">
+                            <label htmlFor="serumS">Serum sodium (mEq/L)</label>
+                            <div className="inputContainer">
+                            <input type="number" name="serumS" id=""/>
+                            <div className="controls controlserumS">
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="Smoking element-container">
+                            <label htmlFor="Smoking">Smoking</label>
+                            <div className="RadioGroup SmokingRadioGroup">
+                            <input type="radio" name="SmokingRadio" value="Yes" id=""/>
+                            <label htmlFor="male">Yes</label><br />
+                            <input type="radio" name="SmokingRadio" value="No" id=""/>
+                            <label htmlFor="No">No</label><br />
+                            </div>
+                        </div>
+                        <div className="time element-container">
+                            <label htmlFor="time">Time (follow-up-period)</label>
+                            <div className="inputContainer">
+                            <input type="number" name="time" id=""/>
+                            <div className="controls controlTime">
+                                <button>+</button>
+                                <button>-</button>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>

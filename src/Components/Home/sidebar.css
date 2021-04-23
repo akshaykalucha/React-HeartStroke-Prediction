@@ -3,15 +3,45 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
 .sidebarView{
     box-sizing: border-box;
+    background-color: #f0f2f6;
+    background-image: linear-gradient(180deg ,#f0f2f6,#fafafa);
+    height: 100vh;
+    overflow: auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 21rem;
+    position: relative;
+    padding: 5rem 1rem;
+    background-attachment: fixed;
+    transition: margin-left .3s,box-shadow .3s;
 }
+
+
+div{
+    display: block;
+}
+
+
+::-webkit-scrollbar {
+    background-color: initial;
+    border-radius: 100px;
+    height: 6px;
+    width: 6px;
+}
+
+
 .inputContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
 }
+
+
 .controls{
     height: 49px;
     display: flex;
@@ -24,9 +54,13 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
     position: relative;
 }
+
+
 .GenderRadioGroup{
     display: block;
 }
+
+
 .listVals li {
     list-style: none;
     cursor: pointer;
