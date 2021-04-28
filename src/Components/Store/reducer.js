@@ -2,7 +2,7 @@ import { ActionTypes } from "./actionTypes";
 
 const initialState = {
     UserVals: {
-        age: null,
+        age: 0,
         gender: ""
     },
 };
@@ -13,7 +13,13 @@ export const UserReducer = (state = initialState, {type, payload}) => {
             return state;
         
         case ActionTypes.SET_AGE:
-            return state;
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    age: state.UserVals.age + 1
+                }
+            };
     
         default:
             return state;

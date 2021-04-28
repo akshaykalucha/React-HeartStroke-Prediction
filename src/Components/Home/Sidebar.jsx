@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './sidebar.css';
 import { connect } from "react-redux";
+import { setAge } from '../Store/action'
 
 
 export class Sidebar extends Component {
@@ -31,13 +32,19 @@ export class Sidebar extends Component {
         
         this.showDiabVals();
       }
-      handleDiab = (event) => {
-          console.log("YESSSSSSSS", this.props.age)
-          this.setState({
-            diab: event.currentTarget.dataset.id
-          })
-          this.showDiabVals()
-      }
+    handleDiab = (event) => {
+        console.log("YESSSSSSSS", this.props.age)
+        this.setState({
+        diab: event.currentTarget.dataset.id
+        })
+        this.showDiabVals()
+    }
+
+    incrementAge = () => {
+        console.log(this.props.age)
+        this.props.setAge();
+    }
+    
 
     render() {
         return (
@@ -50,7 +57,7 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" name="ageNum" id=""/>
                             <div className="controls controlAge">
-                                <button>+</button>
+                                <button onClick={this.incrementAge}>+</button>
                                 <button>-</button>
                             </div>
                             </div>
@@ -178,6 +185,8 @@ const mapStateToProps = state => {
     };
 };
 
-// const mapDispatchToProps = 
+const mapDispatchToProps  = {
+    setAge,
+}
 
-export default connect(mapStateToProps)(Sidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
