@@ -33,6 +33,7 @@ export class Sidebar extends Component {
           this.setState({
             diab: event.currentTarget.dataset.id
           })
+          this.showDiabVals()
       }
 
     render() {
