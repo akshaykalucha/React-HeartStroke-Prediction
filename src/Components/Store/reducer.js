@@ -2,12 +2,12 @@ import { ActionTypes } from "./actionTypes";
 
 const initialState = {
     UserVals: {
-        age: "",
+        age: null,
         gender: ""
     },
 };
 
-const UserReducer = (state = initialState, {type, payload}) => {
+export const UserReducer = (state = initialState, {type, payload}) => {
     switch (type) {
         case ActionTypes.SET_GENDER:
             return state;
@@ -19,5 +19,3 @@ const UserReducer = (state = initialState, {type, payload}) => {
             return state;
     };
 };
-
-export default UserReducer

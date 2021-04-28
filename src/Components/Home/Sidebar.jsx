@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './sidebar.css'
+import './sidebar.css';
+import { connect } from "react-redux";
+
 
 export class Sidebar extends Component {
     state={
@@ -30,6 +32,7 @@ export class Sidebar extends Component {
         this.showDiabVals();
       }
       handleDiab = (event) => {
+          console.log("YESSSSSSSS", this.props.age)
           this.setState({
             diab: event.currentTarget.dataset.id
           })
@@ -169,4 +172,12 @@ export class Sidebar extends Component {
     }
 }
 
-export default Sidebar
+const mapStateToProps = state => {
+    return {
+        age: state.UserReducer.UserVals.age,
+    };
+};
+
+// const mapDispatchToProps = 
+
+export default connect(mapStateToProps)(Sidebar);
