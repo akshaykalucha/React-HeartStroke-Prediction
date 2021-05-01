@@ -17,7 +17,7 @@ export const UserReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 UserVals: {
                     ...state.UserVals,
-                    age: state.UserVals.age + 1
+                    age: state.UserVals.age + payload
                 }
             };
     

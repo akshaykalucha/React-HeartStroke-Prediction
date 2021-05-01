@@ -1,8 +1,9 @@
 import { ActionTypes } from './actionTypes';
 
-export const setAge = () => {
+export const setAge = (Age) => {
     return{
         type: ActionTypes.SET_AGE,
+        payload: Age
     };
 }; 
 

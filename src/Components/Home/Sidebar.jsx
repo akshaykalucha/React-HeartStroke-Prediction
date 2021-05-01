@@ -42,7 +42,7 @@ export class Sidebar extends Component {
 
     incrementAge = () => {
         console.log(this.props.age)
-        this.props.setAge();
+        this.props.incrementAge(4);
     }
     
 
@@ -185,8 +185,10 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps  = {
-    setAge,
+const mapDispatchToProps  = (dispatch) => {
+    return {
+        incrementAge: (num) => dispatch(setAge(num))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
