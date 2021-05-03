@@ -7,9 +7,16 @@ export const setAge = (Age) => {
     };
 }; 
 
-export const setGender = (sex) => {
+export const setCustomAge = (num) => {
+    return{
+        type: ActionTypes.SET_CUSTOM_AGE,
+        payload: num
+    };
+}; 
+
+export const setGender = () => {
     return{
         type: ActionTypes.SET_GENDER,
-        payload: sex
+        // payload: sex
     };
 }; 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './sidebar.css';
 import { connect } from "react-redux";
-import { setAge } from '../Store/action'
+import { setAge, setGender, setCustomAge } from '../Store/action'
 
 
 export class Sidebar extends Component {
@@ -33,7 +33,6 @@ export class Sidebar extends Component {
         this.showDiabVals();
       }
     handleDiab = (event) => {
-        console.log("YESSSSSSSS", this.props.age)
         this.setState({
         diab: event.currentTarget.dataset.id
         })
@@ -41,8 +40,23 @@ export class Sidebar extends Component {
     }
 
     incrementAge = () => {
-        console.log(this.props.age)
-        this.props.incrementAge(4);
+        this.props.incrementAge(1);
+    }
+
+    incrementAgeCustom = (event) => {
+        console.log(event.target.value)
+        if(event.target.value === null || event.target.value === "") {
+            this.props.setCusAge(0)
+        }
+        else{
+            this.props.setCusAge(parseInt(event.target.value))
+        }
+    }
+    
+
+    genderToggle = () => {
+        console.log("yyyy", this.props.val.gender)
+        this.props.gendrToggle()
     }
     
 
@@ -55,7 +69,7 @@ export class Sidebar extends Component {
                         <div className="ageBox element-container">
                             <label htmlFor="Age">Age</label>
                             <div className="inputContainer">
-                            <input type="number" name="ageNum" id=""/>
+                            <input type="number" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
                             <div className="controls controlAge">
                                 <button onClick={this.incrementAge}>+</button>
                                 <button>-</button>
@@ -65,9 +79,9 @@ export class Sidebar extends Component {
                         <div className="GenderBox element-container">
                             <label htmlFor="Age">Sex</label>
                             <div className="GenderRadioGroup RadioGroup">
-                            <input type="radio" name="GenderRadio" value="male" id=""/>
+                            <input type="radio" name="GenderRadio" checked={this.props.val.gender.male} onChange={this.genderToggle} value="male" id=""/>
                             <label htmlFor="male">Male</label><br />
-                            <input type="radio" name="GenderRadio" value="female" id=""/>
+                            <input type="radio" name="GenderRadio" checked={this.props.val.gender.female} onChange={this.genderToggle} value="female" id=""/>
                             <label htmlFor="female">Female</label><br />
                             </div>
                         </div>
@@ -181,13 +195,15 @@ export class Sidebar extends Component {
 
 const mapStateToProps = state => {
     return {
-        age: state.UserReducer.UserVals.age,
+        val: state.UserReducer.UserVals,
     };
 };
 
 const mapDispatchToProps  = (dispatch) => {
     return {
-        incrementAge: (num) => dispatch(setAge(num))
+        incrementAge: (num) => dispatch(setAge(num)),
+        gendrToggle: () => dispatch(setGender()),
+        setCusAge: (age) => dispatch(setCustomAge(age))
     }
 }
 

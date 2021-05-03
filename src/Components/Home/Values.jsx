@@ -1,15 +1,18 @@
 import React from 'react';
-import './Values.css'
+import './Values.css';
+import { useSelector } from "react-redux";
+
 
 export default function Values(props) {
     // console.log(props.open)
+    const vals = useSelector(state => state.UserReducer.UserVals);
     return (
         <div className="Jsoninfo">
             {!props.open ?
                 <div>
                 <p>{"{"}</p>
                 <p>
-                "Age":1
+                "Age":{vals.age}
                 <br />
                 "Sex":"Male"<br />
                 "Anaemia":"Yes"<br />

@@ -69,7 +69,7 @@ export class home extends Component {
 
 const mapStateToProps = state => {
     return {
-        age: state.UserReducer.UserVals.age,
+        Val: state.UserReducer.UserVals,
     };
 };
 
