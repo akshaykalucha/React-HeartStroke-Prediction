@@ -44,13 +44,7 @@ export class Sidebar extends Component {
     }
 
     incrementAgeCustom = (event) => {
-        console.log(event.target.value)
-        if(event.target.value === null || event.target.value === "") {
-            this.props.setCusAge(0)
-        }
-        else{
-            this.props.setCusAge(parseInt(event.target.value))
-        }
+        this.props.setCusAge(event.target.value === "" ? "" : parseInt(event.target.value))
     }
     
 

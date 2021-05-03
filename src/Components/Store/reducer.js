@@ -18,7 +18,7 @@ export const UserReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 UserVals: {
                     ...state.UserVals,
-                    age: state.UserVals.age + payload
+                    age: parseInt(state.UserVals.age) + payload
                 }
             };
         case ActionTypes.SET_CUSTOM_AGE:
