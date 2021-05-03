@@ -5,6 +5,7 @@ import "./home.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Values from './Values';
 import Sidebar from './Sidebar';
+import { connect } from "react-redux";
 
 
 // rgb(246, 51, 102)
@@ -64,4 +65,18 @@ export class home extends Component {
     }
 }
 
-export default home
+
+
+const mapStateToProps = state => {
+    return {
+        age: state.UserReducer.UserVals.age,
+    };
+};
+
+const mapDispatchToProps  = (dispatch) => {
+    return {
+        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(home);
