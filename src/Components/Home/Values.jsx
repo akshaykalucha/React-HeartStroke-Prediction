@@ -12,19 +12,19 @@ export default function Values(props) {
                 <div>
                 <p>{"{"}</p>
                 <p>
-                "Age":{vals.age}
+                "Age": {vals.age}
                 <br />
-                "Sex":"Male"<br />
-                "Anaemia":"Yes"<br />
-                "Creatinine phosphokinase (mcg/L)":1<br />
-                "Diabetes":"Yes"<br />
-                "Ejection fraction %":1<br />
-                "High blood pressure":"Yes"<br />
-                "Platelets (kiloplatelets/mL)":0<br />
-                "Serum creatinine (mg/dL)":0<br />
-                "Serum sodium (mEq/L)":1<br />
-                "Smoking":"Yes"<br />
-                "Time (follow-up-period)":1<br />
+                "Sex": "{vals.gender.val}"<br />
+                "Anaemia": "{vals.anemia.val}"<br />
+                "Creatinine phosphokinase (mcg/L)": {vals.creatine}<br />
+                "Diabetes": "{vals.diabetes}"<br />
+                "Ejection fraction %": {vals.ejection}<br />
+                "High blood pressure": "{vals.highBP.val}"<br />
+                "Platelets (kiloplatelets/mL)": 0<br />
+                "Serum creatinine (mg/dL)": 0<br />
+                "Serum sodium (mEq/L)": 1<br />
+                "Smoking": "Yes"<br />
+                "Time (follow-up-period)": 1<br />
                 </p>
                 <p>{"}"}</p>
             </div>
