@@ -46,6 +46,9 @@ export class Sidebar extends Component {
     incrementAgeCustom = (event) => {
         this.props.setCusAge(event.target.value === "" ? "" : parseInt(event.target.value))
     }
+    decrementAge = () => {
+        this.props.incrementAge(-1)
+    }
     
 
     genderToggle = () => {
@@ -66,7 +69,7 @@ export class Sidebar extends Component {
                             <input type="number" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
                             <div className="controls controlAge">
                                 <button onClick={this.incrementAge}>+</button>
-                                <button>-</button>
+                                <button onClick={this.decrementAge}>-</button>
                             </div>
                             </div>
                         </div>

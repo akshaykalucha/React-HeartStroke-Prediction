@@ -7,6 +7,20 @@ const initialState = {
             male: true,
             female: false
         },
+        anemia: {
+            yes: true,
+            no: false
+        },
+        creatine: 1,
+        diabetes: "No",
+        ejection: 1,
+        highBP: {
+            yes: true,
+            no: false
+        },
+        platlets: 1,
+        serum: 1,
+        serumS: 1
     },
 };
 
