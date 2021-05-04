@@ -20,11 +20,11 @@ export default function Values(props) {
                 "Diabetes": "{vals.diabetes}"<br />
                 "Ejection fraction %": {vals.ejection}<br />
                 "High blood pressure": "{vals.highBP.val}"<br />
-                "Platelets (kiloplatelets/mL)": 0<br />
-                "Serum creatinine (mg/dL)": 0<br />
-                "Serum sodium (mEq/L)": 1<br />
-                "Smoking": "Yes"<br />
-                "Time (follow-up-period)": 1<br />
+                "Platelets (kiloplatelets/mL)": {vals.platlets}<br />
+                "Serum creatinine (mg/dL)": {vals.serum}<br />
+                "Serum sodium (mEq/L)": {vals.serumS}<br />
+                "Smoking": "{vals.smoking.val}"<br />
+                "Time (follow-up-period)": {vals.time}<br />
                 </p>
                 <p>{"}"}</p>
             </div>

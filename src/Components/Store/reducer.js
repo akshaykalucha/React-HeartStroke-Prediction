@@ -21,10 +21,11 @@ const initialState = {
             yes: true,
             no: false
         },
-        platlets: 0.00,
-        serum: 0.00,
+        platlets: "0.00",
+        serum: "0.00",
         serumS: 1,
         smoking: {
+            val: "Yes",
             yes: true,
             no: false
         },
@@ -32,8 +33,9 @@ const initialState = {
     },
 };
 
-
-
+function round(x, digits){
+    return parseFloat(x.toFixed(digits))
+}
 
 export const UserReducer = (state = initialState, {type, payload}) => {
     switch (type) {
@@ -135,6 +137,88 @@ export const UserReducer = (state = initialState, {type, payload}) => {
                     }
                 }
             }
+        case ActionTypes.SET_SMOKING:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    smoking: {
+                        ...state.UserVals.smoking,
+                        val: payload,
+                        yes: !state.UserVals.smoking.yes,
+                        no: !state.UserVals.smoking.no
+                    }
+                }
+            }
+
+        case ActionTypes.SET_TIME:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    time: parseInt(state.UserVals.time) + payload
+                }
+            };
+        case ActionTypes.SET_CUSTOM_TIME:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    time: payload
+                }
+            };
+
+        case ActionTypes.SET_SERUM_S:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    serumS: parseInt(state.UserVals.serumS) + payload
+                }
+            };
+        case ActionTypes.SET_CUSTOM_SERUM_S:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    serumS: payload
+                }
+            };
+
+        case ActionTypes.SET_SERUM:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    serum: round((parseFloat(state.UserVals.serum) + payload), 2)
+                }
+            };
+        case ActionTypes.SET_CUSTOM_SERUM:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    serum: payload
+                }
+            };
+    
+
+        case ActionTypes.SET_PLATLETS:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    platlets: round((parseFloat(state.UserVals.platlets) + payload), 2)
+                }
+            };
+        case ActionTypes.SET_CUSTOM_PLATLETS:
+            return {
+                ...state,
+                UserVals: {
+                    ...state.UserVals,
+                    platlets: payload
+                }
+            };
 
         default:
             return state;

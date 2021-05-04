@@ -70,3 +70,66 @@ export const setHighBP = (val) => {
         payload: val
     };
 }; 
+
+export const setSmoking = (val) => {
+    return {
+        type: ActionTypes.SET_SMOKING,
+        payload: val
+    }
+}
+
+export const setTime = (time) => {
+    return{
+        type: ActionTypes.SET_TIME,
+        payload: time
+    };
+}; 
+
+export const setCustomTime = (num) => {
+    return{
+        type: ActionTypes.SET_CUSTOM_TIME,
+        payload: num
+    };
+};
+
+export const setSerumS = (serum) => {
+    return{
+        type: ActionTypes.SET_SERUM_S,
+        payload: serum
+    };
+}; 
+
+export const setCustomSerumS = (num) => {
+    return{
+        type: ActionTypes.SET_CUSTOM_SERUM_S,
+        payload: num
+    };
+};
+
+export const setSerum = (serum) => {
+    return{
+        type: ActionTypes.SET_SERUM,
+        payload: serum
+    };
+}; 
+
+export const setCustomSerum = (num) => {
+    return{
+        type: ActionTypes.SET_CUSTOM_SERUM,
+        payload: num
+    };
+};
+
+export const setplatlets = (platlets) => {
+    return{
+        type: ActionTypes.SET_PLATLETS,
+        payload: platlets
+    };
+}; 
+
+export const setCustomPlatlets = (num) => {
+    return{
+        type: ActionTypes.SET_CUSTOM_PLATLETS,
+        payload: num
+    };
+};

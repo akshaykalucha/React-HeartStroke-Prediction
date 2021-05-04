@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './sidebar.css';
 import { connect } from "react-redux";
-import { setAge, setGender, setCustomAge, setAnemia, setCreatine, setCustomCreatine, setDiabetes, setEjection, setCustomEjection, setHighBP } from '../Store/action'
+import { setAge, setGender, setCustomAge, setAnemia, setCreatine, setCustomCreatine, setDiabetes, setEjection, setCustomEjection, setHighBP, setSmoking, setTime,setCustomTime,
+    setSerumS, setCustomSerumS, setSerum, setCustomSerum, setplatlets, setCustomPlatlets
+} from '../Store/action'
 
 
 export class Sidebar extends Component {
@@ -69,6 +71,50 @@ export class Sidebar extends Component {
     toggleHighBP = (event) => {
         this.props.setBP(event.target.value)
     }
+    toggleSmoking = (event) => {
+        this.props.setSmoking(event.target.value)
+    }
+
+    incrementTime = () => {
+        this.props.incrementTime(1);
+    }
+    decrementTime = () => {
+        this.props.incrementTime(-1)
+    }
+    incrementTimeCustom = (event) => {
+        this.props.setCusTime(event.target.value === "" ? "" : parseInt(event.target.value))
+    }
+
+    incrementSerumS = () => {
+        this.props.incrementSerumS(1);
+    }
+    decrementSerumS = () => {
+        this.props.incrementSerumS(-1)
+    }
+    incrementSerumSCustom = (event) => {
+        this.props.setCusSerumS(event.target.value === "" ? "" : parseInt(event.target.value))
+    }
+
+    incrementSerum = () => {
+        this.props.incrementSerum(0.01);
+    }
+    decrementSerum = () => {
+        this.props.incrementSerum(-0.01)
+    }
+    incrementSerumCustom = (event) => {
+        this.props.setCusSerum(event.target.value === "" ? "" : parseFloat(event.target.value))
+    }
+
+
+    incrementPlatlets = () => {
+        this.props.incrementPlatlets(0.01);
+    }
+    decrementPlatlets = () => {
+        this.props.incrementPlatlets(-0.01)
+    }
+    incrementPlatletsCustom = (event) => {
+        this.props.setCusPlatlets(event.target.value === "" ? "" : parseFloat(event.target.value))
+    }
 
     render() {
         return (
@@ -79,7 +125,7 @@ export class Sidebar extends Component {
                         <div className="ageBox element-container">
                             <label htmlFor="Age">Age</label>
                             <div className="inputContainer">
-                            <input type="number" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
+                            <input type="number" min="0" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
                             <div className="controls controlAge">
                                 <button onClick={this.incrementAge}>+</button>
                                 <button onClick={this.decrementAge}>-</button>
@@ -150,49 +196,49 @@ export class Sidebar extends Component {
                         <div className="platlets element-container">
                             <label htmlFor="platlets">Platelets (kiloplatelets/mL)</label>
                             <div className="inputContainer">
-                            <input type="number" name="platlets" id=""/>
+                            <input type="number" step="0.00" value={this.props.val.platlets} onChange={this.incrementPlatletsCustom} name="platlets" id=""/>
                             <div className="controls controlPlatlets">
-                                <button>+</button>
-                                <button>-</button>
+                                <button onClick={this.incrementPlatlets }>+</button>
+                                <button onClick={this.decrementPlatlets}>-</button>
                             </div>
                             </div>
                         </div>
                         <div className="serumC element-container">
                             <label htmlFor="serumC">Serum creatinine (mg/dL)</label>
                             <div className="inputContainer">
-                            <input type="number" name="serumC" id=""/>
+                            <input type="number" step="0.00" value={this.props.val.serum} onChange={this.incrementSerumCustom} name="serumC" id=""/>
                             <div className="controls controlSerumC">
-                                <button>+</button>
-                                <button>-</button>
+                                <button onClick={this.incrementSerum}>+</button>
+                                <button onClick={this.decrementSerum}>-</button>
                             </div>
                             </div>
                         </div>
                         <div className="serumS element-container">
                             <label htmlFor="serumS">Serum sodium (mEq/L)</label>
                             <div className="inputContainer">
-                            <input type="number" name="serumS" id=""/>
+                            <input type="number" value={this.props.val.serumS} onChange={this.incrementSerumSCustom} name="serumS" id=""/>
                             <div className="controls controlserumS">
-                                <button>+</button>
-                                <button>-</button>
+                                <button onClick={this.incrementSerumS}>+</button>
+                                <button onClick={this.decrementSerumS}>-</button>
                             </div>
                             </div>
                         </div>
                         <div className="Smoking element-container">
                             <label htmlFor="Smoking">Smoking</label>
                             <div className="RadioGroup SmokingRadioGroup">
-                            <input type="radio" name="SmokingRadio" checked={this.props.val.smoking.yes} value="Yes" id=""/>
+                            <input type="radio" name="SmokingRadio" checked={this.props.val.smoking.yes} onChange={this.toggleSmoking} value="Yes" id=""/>
                             <label htmlFor="male">Yes</label><br />
-                            <input type="radio" name="SmokingRadio" checked={this.props.val.smoking.no} value="No" id=""/>
+                            <input type="radio" name="SmokingRadio" checked={this.props.val.smoking.no} onChange={this.toggleSmoking} value="No" id=""/>
                             <label htmlFor="No">No</label><br />
                             </div>
                         </div>
                         <div className="time element-container">
                             <label htmlFor="time">Time (follow-up-period)</label>
                             <div className="inputContainer">
-                            <input type="number" name="time" id=""/>
+                            <input type="number" name="time" value={this.props.val.time} onChange={this.incrementTimeCustom} id=""/>
                             <div className="controls controlTime">
-                                <button>+</button>
-                                <button>-</button>
+                                <button onClick={this.incrementTime}>+</button>
+                                <button onClick={this.decrementTime}>-</button>
                             </div>
                             </div>
                         </div>
@@ -221,6 +267,15 @@ const mapDispatchToProps  = (dispatch) => {
         incrementEjection: (num) => dispatch(setEjection(num)),
         setCusEjection: (ejection) => dispatch(setCustomEjection(ejection)),
         setBP: (val) => dispatch(setHighBP(val)),
+        setSmoking: (val) => dispatch(setSmoking(val)),
+        incrementTime: (num) => dispatch(setTime(num)),
+        setCusTime: (time) => dispatch(setCustomTime(time)),
+        incrementSerumS: (num) => dispatch(setSerumS(num)),
+        setCusSerumS: (serumS) => dispatch(setCustomSerumS(serumS)),
+        incrementSerum: (num) => dispatch(setSerum(num)),
+        setCusSerum: (serum) => dispatch(setCustomSerum(serum)),
+        incrementPlatlets: (num) => dispatch(setplatlets(num)),
+        setCusPlatlets: (platlets) => dispatch(setCustomPlatlets(platlets)),
     }
 }
 
