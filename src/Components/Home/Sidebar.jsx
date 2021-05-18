@@ -122,13 +122,15 @@ export class Sidebar extends Component {
                 <section className="sidebarView">
                     <div className="Infoboxes">
                         <h1>Prediction Form📋</h1>
-                        <div className="ageBox element-container">
+                        <div className="ageBox element-container" style={{width: "298px"}}>
+                        <div style={{width: "298px"}}>
                             <label htmlFor="Age">Age</label>
                             <div className="inputContainer">
                             <input type="number" min="0" className="inputCtrl" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
                             <div className="controls controlAge">
                                 <button className="stepUp stepBtn" onClick={this.incrementAge}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementAge}>-</button>
+                            </div>
                             </div>
                             </div>
                         </div>
