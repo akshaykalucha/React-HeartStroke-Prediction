@@ -125,10 +125,10 @@ export class Sidebar extends Component {
                         <div className="ageBox element-container">
                             <label htmlFor="Age">Age</label>
                             <div className="inputContainer">
-                            <input type="number" min="0" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
+                            <input type="number" min="0" className="inputCtrl" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
                             <div className="controls controlAge">
-                                <button onClick={this.incrementAge}>+</button>
-                                <button onClick={this.decrementAge}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementAge}>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementAge}>-</button>
                             </div>
                             </div>
                         </div>
@@ -153,17 +153,17 @@ export class Sidebar extends Component {
                         <div className="Creatine element-container">
                             <label htmlFor="Creatinine">Creatinine phosphokinase (mcg/L)</label>
                             <div className="inputContainer">
-                            <input type="number" value={this.props.val.creatine} onChange={this.incrementCreatineCustom} name="Creatine" id=""/>
+                            <input type="number" className="inputCtrl" value={this.props.val.creatine} onChange={this.incrementCreatineCustom} name="Creatine" id=""/>
                             <div className="controls controlAge">
-                                <button onClick={this.incrementCreatine}>+</button>
-                                <button onClick={this.decrementCreatine}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementCreatine}>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementCreatine}>-</button>
                             </div>
                             </div>
                         </div>
                         <div ref={node => { this.node = node; }} className="Diabetes element-container">
                             <label htmlFor="Diabetes">Diabetes</label>
                             <div className="inputContainer">
-                                <input onClick={this.showDiabVals} readOnly type="Text" value={this.props.val.diabetes} name="Creatine" id=""/>
+                                <input onClick={this.showDiabVals} className="inputCtrl" readOnly type="Text" value={this.props.val.diabetes} name="Creatine" id=""/>
                             </div>
                             {this.state.showDiab && (
                             <div className="DibVals listbox">
@@ -177,10 +177,10 @@ export class Sidebar extends Component {
                         <div className="ejection_frac element-container">
                             <label htmlFor="ejection_frac">Ejection fraction %</label>
                             <div className="inputContainer">
-                            <input type="number" value={this.props.val.ejection} onChange={this.incrementEjectionCustom} name="ejection_frac" id=""/>
+                            <input type="number" value={this.props.val.ejection} className="inputCtrl" onChange={this.incrementEjectionCustom} name="ejection_frac" id=""/>
                             <div className="controls controlEjection">
-                                <button onClick={this.incrementEjection}>+</button>
-                                <button onClick={this.decrementEjection}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementEjection}>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementEjection}>-</button>
                             </div>
                             </div>
                         </div>
@@ -196,30 +196,30 @@ export class Sidebar extends Component {
                         <div className="platlets element-container">
                             <label htmlFor="platlets">Platelets (kiloplatelets/mL)</label>
                             <div className="inputContainer">
-                            <input type="number" step="0.00" value={this.props.val.platlets} onChange={this.incrementPlatletsCustom} name="platlets" id=""/>
+                            <input type="number" step="0.00" className="inputCtrl" value={this.props.val.platlets} onChange={this.incrementPlatletsCustom} name="platlets" id=""/>
                             <div className="controls controlPlatlets">
-                                <button onClick={this.incrementPlatlets }>+</button>
-                                <button onClick={this.decrementPlatlets}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementPlatlets }>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementPlatlets}>-</button>
                             </div>
                             </div>
                         </div>
                         <div className="serumC element-container">
                             <label htmlFor="serumC">Serum creatinine (mg/dL)</label>
                             <div className="inputContainer">
-                            <input type="number" step="0.00" value={this.props.val.serum} onChange={this.incrementSerumCustom} name="serumC" id=""/>
+                            <input type="number" step="0.00" className="inputCtrl" value={this.props.val.serum} onChange={this.incrementSerumCustom} name="serumC" id=""/>
                             <div className="controls controlSerumC">
-                                <button onClick={this.incrementSerum}>+</button>
-                                <button onClick={this.decrementSerum}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementSerum}>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementSerum}>-</button>
                             </div>
                             </div>
                         </div>
                         <div className="serumS element-container">
                             <label htmlFor="serumS">Serum sodium (mEq/L)</label>
                             <div className="inputContainer">
-                            <input type="number" value={this.props.val.serumS} onChange={this.incrementSerumSCustom} name="serumS" id=""/>
+                            <input type="number" value={this.props.val.serumS} className="inputCtrl" onChange={this.incrementSerumSCustom} name="serumS" id=""/>
                             <div className="controls controlserumS">
-                                <button onClick={this.incrementSerumS}>+</button>
-                                <button onClick={this.decrementSerumS}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementSerumS}>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementSerumS}>-</button>
                             </div>
                             </div>
                         </div>
@@ -235,10 +235,10 @@ export class Sidebar extends Component {
                         <div className="time element-container">
                             <label htmlFor="time">Time (follow-up-period)</label>
                             <div className="inputContainer">
-                            <input type="number" name="time" value={this.props.val.time} onChange={this.incrementTimeCustom} id=""/>
+                            <input type="number" name="time" className="inputCtrl" value={this.props.val.time} onChange={this.incrementTimeCustom} id=""/>
                             <div className="controls controlTime">
-                                <button onClick={this.incrementTime}>+</button>
-                                <button onClick={this.decrementTime}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementTime}>+</button>
+                                <button className="stepDown stepBtn" onClick={this.decrementTime}>-</button>
                             </div>
                             </div>
                         </div>

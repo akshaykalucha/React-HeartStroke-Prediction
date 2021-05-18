@@ -65,3 +65,51 @@ div{
     list-style: none;
     cursor: pointer;
 }
+
+.inputCtrl {
+    box-sizing: border-box;
+    color: rgb(38, 39, 48);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+    outline: none;
+    border-bottom-style: none;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: rgb(38, 39, 48);
+    line-height: 1.6;
+    font-size: 1rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: normal;
+    border-radius: 5px 0px 0px 5px;
+}
+
+
+.stepUp{
+
+}
+.stepDown{
+    border-radius: 0px 5px 5px 0px !important;
+}
+
+.stepBtn{
+    align-items: center;
+    background-color: #e6eaf1;
+    border: 0;
+    height: 100%;
+    width: 45px;
+    justify-content: center;
+    transition: color .3s,background-color .3s;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    color: -internal-light-dark(black, white);
+    padding: 1px 6px;
+    text-align: center;
+    font-size: .5rem;
+    line-height: inherit;
+    border-radius: 0;
+    font: 400 25.3333px Arial;
+}
