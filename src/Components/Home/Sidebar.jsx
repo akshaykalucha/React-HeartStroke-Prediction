@@ -165,7 +165,7 @@ export class Sidebar extends Component {
                         <div ref={node => { this.node = node; }} className="Diabetes element-container">
                             <label htmlFor="Diabetes">Diabetes</label>
                             <div className="inputContainer">
-                                <input onClick={this.showDiabVals} className="inputCtrl" readOnly type="Text" value={this.props.val.diabetes} name="Creatine" id=""/>
+                                <input onClick={this.showDiabVals} className="inputCtrl diabInput" readOnly type="Text" value={this.props.val.diabetes} name="Creatine" id=""/>
                             </div>
                             {this.state.showDiab && (
                             <div className="DibVals listbox">
