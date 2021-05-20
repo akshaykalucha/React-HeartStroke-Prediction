@@ -170,8 +170,10 @@ export class Sidebar extends Component {
                             {this.state.showDiab && (
                             <div className="DibVals listbox">
                                 <ul className="listVals">
-                                    <li onClick={this.handleDiab} data-id="Yes" className="valYes">Yes</li>
-                                    <li onClick={this.handleDiab} data-id="No" className="valNo">No</li>
+                                    <div className="diabli">
+                                        <li onClick={this.handleDiab} data-id="Yes" className="valYes">Yes</li>
+                                        <li onClick={this.handleDiab} data-id="No" className="valNo">No</li>
+                                    </div>
                                 </ul>
                             </div>
                             )}
