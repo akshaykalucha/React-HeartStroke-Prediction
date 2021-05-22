@@ -135,13 +135,8 @@ div{
     background-color: white;
     box-shadow: rgb(0 0 0 / 16%) 0px 4px 16px;
     border-radius: .25rem;
-    transform: translate3d(0px, 0px, 0px);
     display: block;
     position: relative;
-    transition-property: opacity, transform;
-    transition-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
-    opacity: 1;
-    transition-duration: 0.1s;
     color: rgb(38, 39, 48);
     box-sizing: border-box;
 }
