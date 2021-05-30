@@ -125,22 +125,3 @@ div{
     font: 400 25.3333px Arial;
 }
 
-.diabInput {
-    width: 287px;
-    border-radius: 5px 5px 5px 5px;
-}
-.DibVals {
-    margin-top: 8px;
-    width: 287px;
-    background-color: white;
-    box-shadow: rgb(0 0 0 / 16%) 0px 4px 16px;
-    border-radius: .25rem;
-    display: block;
-    position: relative;
-    color: rgb(38, 39, 48);
-    box-sizing: border-box;
-}
-
-.listVals{
-    
-}
