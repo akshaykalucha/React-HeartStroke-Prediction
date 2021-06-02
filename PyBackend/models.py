@@ -150,3 +150,62 @@ def fit_model(X_train, y_train,models):
 def save_model(model,filename):
     pickle.dump(model, open(filename, 'wb'))
 
+# Performance Measure
+def classification_metrics(model, conf_matrix):
+    print(f"Training Accuracy Score: {model.score(X_train, y_train) * 100:.1f}%")
+    print(f"Validation Accuracy Score: {model.score(X_test, y_test) * 100:.1f}%")
+    fig,ax = plt.subplots(figsize=(8,6))
+    sns.heatmap(pd.DataFrame(conf_matrix), annot = True, cmap = 'YlGnBu',fmt = 'g')
+    ax.xaxis.set_label_position('top')
+    plt.tight_layout()
+    plt.title('Confusion Matrix', fontsize=20, y=1.1)
+    plt.ylabel('Actual label', fontsize=15)
+    plt.xlabel('Predicted label', fontsize=15)
+    plt.show()
+    print(classification_report(y_test, y_pred))
+    
+# ROC_AUC
+def roc_auc(y_test, y_pred):
+    fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+    plt.figure(figsize=(8,6))
+    print(f"roc_auc score: {auc(fpr, tpr)*100:.1f}%")
+    plt.plot(fpr, tpr, color='orange', label='ROC')
+    plt.plot([0, 1], [0, 1], color='darkblue', linestyle='--')
+    plt.xlabel('False Positive Rate',fontsize=12)
+    plt.ylabel('True Positive Rate', fontsize=12)
+    plt.title('Receiver Operating Characteristic (ROC) Curve', fontsize=20)
+    plt.legend()
+    plt.show()
+
+
+Q1 = df.quantile(0.25)
+Q3 = df.quantile(0.75)
+IQR = Q3 - Q1
+
+df_out = df[~((df < (Q1 - 1.5 * IQR)) |(df > (Q3 + 1.5 * IQR))).any(axis=1)]
+
+live = df_out[df_out.DEATH_EVENT == 0]
+die = df_out[df_out.DEATH_EVENT==1]
+
+die_upsampled = resample(die,
+                        replace=True,
+                        n_samples=len(live),
+                        random_state=0)
+
+upsampled = pd.concat([live, die_upsampled])
+
+
+# Split data to training and validation set
+target = 'DEATH_EVENT'
+X_train, X_test, y_train, y_test = read_in_and_split_data(upsampled, target)
+
+#Fit data to model
+models = GetModel()
+names,results = fit_model(X_train, y_train,models)
+
+# Normalize data to improve accuracy
+ScaledModel = NormalizedModel('minmax')
+name,results = fit_model(X_train, y_train, ScaledModel)
+
+# Fine tunong
+
