@@ -12,3 +12,8 @@ from sklearn.utils import resample
 # Metrics
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, auc, roc_curve
 
+# Validation
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
+from sklearn.pipeline import Pipeline, make_pipeline
+
+
