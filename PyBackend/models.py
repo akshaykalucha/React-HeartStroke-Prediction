@@ -280,3 +280,20 @@ kfold = KFold(n_splits=10, random_state=0)
 cv_results = cross_val_score(model, X_train, y_train, cv=10, scoring='accuracy')
 grid_search = GridSearchCV(estimator=model, param_grid=grid, n_jobs=-1, cv=10, scoring='accuracy',error_score=0)
 grid_result = grid_search.fit(X_train, y_train)
+# summarize results
+print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print("%f (%f) with: %r" % (mean, stdev, param))
+
+# Predict unseen data
+pipeline = make_pipeline(MinMaxScaler(),  GradientBoostingClassifier(learning_rate=0.1, max_depth=9, n_estimators=1000, subsample=0.7))
+model = pipeline.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+conf_matrix = confusion_matrix(y_test,y_pred)
+classification_metrics(pipeline, conf_matrix)
+roc_auc(y_test, y_pred)
+
+save_model(model, 'model.pkl')
