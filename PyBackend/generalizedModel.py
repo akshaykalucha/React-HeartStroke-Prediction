@@ -94,3 +94,27 @@ class BaseGLM(BaseEstimator, ClassifierMixin):
             raise ValueError("Unsupported family")
 
 
+class BinaryClassificationGLM(BaseGLM):
+    
+    def fit(self, X, y):
+        """
+        takes in training data and fits a model
+        """
+
+        self.classes_ = list(set(y))
+
+        X = sm.add_constant(X)
+
+        #  returns statsmodel link and distribution functions based on user input
+        self.set_link_str()
+        link = self.get_link_function()
+        family = self.get_family(link)
+
+        #  fits and stores statsmodel glm
+        model = sm.GLM(y, X, family=family)
+        self.fitted_model = model.fit()
+
+        #  adds attributes for explainability
+        self.coef_ = np.array(self.fitted_model.params[1:]).reshape(1,
+                                                                    -1)  # removes first value which is the intercept
+        self.intercept_ = np.array(self.fitted_model.params[0]).reshape(-1)
