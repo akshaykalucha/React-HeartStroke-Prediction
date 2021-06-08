@@ -94,3 +94,92 @@ class BaseGLM(BaseEstimator, ClassifierMixin):
             raise ValueError("Unsupported family")
 
 
+class BinaryClassificationGLM(BaseGLM):
+    
+    def fit(self, X, y):
+        """
+        takes in training data and fits a model
+        """
+
+        self.classes_ = list(set(y))
+
+        X = sm.add_constant(X)
+
+        #  returns statsmodel link and distribution functions based on user input
+        self.set_link_str()
+        link = self.get_link_function()
+        family = self.get_family(link)
+
+        #  fits and stores statsmodel glm
+        model = sm.GLM(y, X, family=family)
+        self.fitted_model = model.fit()
+
+        #  adds attributes for explainability
+        self.coef_ = np.array(self.fitted_model.params[1:]).reshape(1,
+                                                                    -1)  # removes first value which is the intercept
+        self.intercept_ = np.array(self.fitted_model.params[0]).reshape(-1)
+
+    def predict(self, X):
+        """
+        Returns the binary target
+        """
+
+        X = sm.add_constant(X, has_constant='add')
+
+        # makes predictions and converts to DSS accepted format
+        y_pred = np.array(self.fitted_model.predict(X))
+        y_pred_final = y_pred.reshape((len(y_pred), -1))
+
+        return y_pred_final > 0.5
+
+    def predict_proba(self, X):
+        """
+        Return the prediction proba
+        """
+        #  adds a constant
+        X = sm.add_constant(X, has_constant='add')
+
+        # makes predictions and converts to DSS accepted format
+        y_pred = np.array(self.fitted_model.predict(X))
+        y_pred_final = y_pred.reshape((len(y_pred), -1))
+
+        # returns p, 1-p prediction probabilities
+        return np.append(1 - y_pred_final, y_pred_final, axis=1)
+
+
+class RegressionGLM(BaseGLM):
+    
+    def fit(self, X, y):
+        """
+        takes in training data and fits a model
+        """
+
+        self.classes_ = list(set(y))
+
+        X = sm.add_constant(X)
+        self.set_link_str()
+        #  returns statsmodel link and distribution functions based on user input
+        link = self.get_link_function()
+        family = self.get_family(link)
+
+        #  fits and stores statsmodel glm
+        model = sm.GLM(y, X, family=family)
+        self.fitted_model = model.fit()
+
+        #  adds attributes for explainability
+        # intercept cant be multidimensional np array like in classification
+        # as scoring_base.py func compute_lm_significant hstack method will fail
+        self.coef_ = np.array(self.fitted_model.params[1:])  # removes first value which is the intercept
+        self.intercept_ = float(self.fitted_model.params[0])
+
+    def predict(self, X):
+        """
+        Returns the target as 1D array
+        """
+
+        X = sm.add_constant(X, has_constant='add')
+
+        # makes predictions and converts to DSS accepted format
+        y_pred = np.array(self.fitted_model.predict(X))
+
+        return y_pred
