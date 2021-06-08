@@ -118,3 +118,32 @@ class BinaryClassificationGLM(BaseGLM):
         self.coef_ = np.array(self.fitted_model.params[1:]).reshape(1,
                                                                     -1)  # removes first value which is the intercept
         self.intercept_ = np.array(self.fitted_model.params[0]).reshape(-1)
+
+    def predict(self, X):
+        """
+        Returns the binary target
+        """
+
+        X = sm.add_constant(X, has_constant='add')
+
+        # makes predictions and converts to DSS accepted format
+        y_pred = np.array(self.fitted_model.predict(X))
+        y_pred_final = y_pred.reshape((len(y_pred), -1))
+
+        return y_pred_final > 0.5
+
+    def predict_proba(self, X):
+        """
+        Return the prediction proba
+        """
+        #  adds a constant
+        X = sm.add_constant(X, has_constant='add')
+
+        # makes predictions and converts to DSS accepted format
+        y_pred = np.array(self.fitted_model.predict(X))
+        y_pred_final = y_pred.reshape((len(y_pred), -1))
+
+        # returns p, 1-p prediction probabilities
+        return np.append(1 - y_pred_final, y_pred_final, axis=1)
+
+
