@@ -51,3 +51,46 @@ class BaseGLM(BaseEstimator, ClassifierMixin):
 
         return links_dict[self.link]
 
+    def set_link_str(self):
+    
+        link_str_dict = {
+            'binomial': self.binomial_link,
+            'gamma': self.gamma_link,
+            'gaussian': self.gaussian_link,
+            'inverse_gaussian': self.inverse_gaussian_link,
+            'poisson': self.poisson_link,
+            'negative_binomial': self.negative_binomial_link,
+            'tweedie': self.tweedie_link
+        }
+        self.link = link_str_dict[self.family]
+
+    def get_family(self, link):
+        """
+        takes in user defined family variable
+        and statsmodel link function
+        returns the family
+        """
+        if self.family == 'binomial':
+            return sm.families.Binomial(link=link)
+
+        elif self.family == "gamma":
+            return sm.families.Gamma(link=link)
+
+        elif self.family == "gaussian":
+            return sm.families.Gaussian(link=link)
+
+        elif self.family == "inverse_gaussian":
+            return sm.families.InverseGaussian(link=link)
+
+        elif self.family == "negative_binomial":
+            return sm.families.NegativeBinomial(link=link, alpha=self.alpha)
+
+        elif self.family == "poisson":
+            return sm.families.Poisson(link=link)
+
+        elif self.family == "tweedie":
+            return sm.families.Tweedie(link=link, var_power=self.var_power)
+        else:
+            raise ValueError("Unsupported family")
+
+
