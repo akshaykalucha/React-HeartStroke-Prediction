@@ -147,3 +147,28 @@ class BinaryClassificationGLM(BaseGLM):
         return np.append(1 - y_pred_final, y_pred_final, axis=1)
 
 
+class RegressionGLM(BaseGLM):
+    
+    def fit(self, X, y):
+        """
+        takes in training data and fits a model
+        """
+
+        self.classes_ = list(set(y))
+
+        X = sm.add_constant(X)
+        self.set_link_str()
+        #  returns statsmodel link and distribution functions based on user input
+        link = self.get_link_function()
+        family = self.get_family(link)
+
+        #  fits and stores statsmodel glm
+        model = sm.GLM(y, X, family=family)
+        self.fitted_model = model.fit()
+
+        #  adds attributes for explainability
+        # intercept cant be multidimensional np array like in classification
+        # as scoring_base.py func compute_lm_significant hstack method will fail
+        self.coef_ = np.array(self.fitted_model.params[1:])  # removes first value which is the intercept
+        self.intercept_ = float(self.fitted_model.params[0])
+
