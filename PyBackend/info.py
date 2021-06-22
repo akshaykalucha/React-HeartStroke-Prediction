@@ -276,5 +276,24 @@ def main():
         simulation.show()
 
 
+
+    def plot(self):
+        if type(self.random_walk) is Levy:
+            walk_name = "Levy flight"
+        elif type(self.random_walk) is Brownian:
+            walk_name = "Brownian Motion"
+        else:
+            raise NotImplementedError
+        plt.figure()
+        plt.title("Population density plot for an information spread model\n{}, N:{}, L:{}".format(walk_name, self.N, self.L))
+        plt.xlabel("Pop. density")
+        plt.ylabel(self.title)
+
+        plt.plot(self.percents, self.ts_avg, color="black", marker="o", linestyle="none")
+        plt.vlines(self.percents, ymin=self.ts_avg - self.ts_std/2, ymax=self.ts_avg + self.ts_std/2, colors="black")
+
+        plt.bar(x=self.percents, height=self.ts_max-self.ts_min, bottom=self.ts_min, color="lightgrey", width=min(self.steps))
+
+
 if __name__ == "__main__":
     main()
