@@ -184,3 +184,28 @@ class Simulation(ABC):
             pass
 
 
+    def dump_to_csv(self, directory: Path):
+        file_path = self.make_file_path(directory, self.random_walk, self.N, self.M, self.max_random_step)
+        with file_path.open(mode="a") as f:
+
+            for idx in np.arange(self.last_iter):
+                f.write(str(self.ts_sick[idx]))
+                if idx != self.last_iter - 1:
+                    f.write(",")
+                else:
+                    f.write(";")
+
+            for idx in np.arange(self.last_iter):
+                f.write(str(self.ts_dead[idx]))
+                if idx != self.last_iter - 1:
+                    f.write(",")
+                else:
+                    f.write("\n")
+
+
+class SimulationA(Simulation):
+
+    def handle_two_infected_meet(self) -> tuple:
+        return self.RECOVERED, self.RECOVERED
+
+
