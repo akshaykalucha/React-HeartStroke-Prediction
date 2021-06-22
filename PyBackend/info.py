@@ -242,7 +242,38 @@ def parse_arguments():
     return args
 
 
+def main():
+    args = parse_arguments()
 
+    if args.csv_dir is not None:
+        directory = Path(args.csv_dir).resolve()
+    N = args.N
+    M = int(args.ro * N**2)
+    L = args.max_random_step
+    brownian = args.brownian
+
+    if args.load:
+        random_walk = Brownian(L) if brownian else Levy(L)
+        file_name = Simulation.make_file_path(directory, random_walk, N, M, L)
+
+        try:
+            with directory.joinpath(file_name).open() as f:
+                for line in f:
+                    simulation = SimulationA(N=N, M=M, csv_line=line, brownian=brownian)
+                    simulation.plot()
+                    simulation.show()
+        except FileNotFoundError:
+            print("There aren't any simulations of this kind yet.")
+
+    else:
+        simulation = SimulationA(N=N, M=M, max_random_step=L, brownian=brownian ,max_iter=10000, logging=True)
+        simulation.run(123)
+
+        if args.csv_dir is not None:
+            simulation.dump_to_csv(directory)
+
+        simulation.plot()
+        simulation.show()
 
 
 if __name__ == "__main__":
