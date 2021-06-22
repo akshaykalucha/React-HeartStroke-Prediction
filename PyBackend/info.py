@@ -55,3 +55,18 @@ class Simulation(ABC):
         pass
 
 
+    def run(self, seed: int):
+        if seed is not None:
+            np.random.seed(seed)
+
+        if self.N <= 0 or self.M <= 1:
+            return self
+
+        x, y   = np.zeros(self.M, dtype=int), np.zeros(self.M, dtype=int)
+        infect = np.zeros(self.M, dtype=int)
+
+        position_index = PositionIndex(grid_x=self.N, grid_y=self.N)
+        infected_index = set()
+        new_infected   = set()
+        new_recovered  = set()
+
