@@ -209,3 +209,41 @@ class SimulationA(Simulation):
         return self.RECOVERED, self.RECOVERED
 
 
+class SimulationB(Simulation):
+    
+    def handle_two_infected_meet(self) -> tuple:
+        return self.INFECTED, self.RECOVERED
+
+
+def parse_arguments():
+    parser = ArgumentParser(description=__doc__)
+
+    parser.add_argument("--csv-dir", default=None, help="path to directory, where simulation results are to be kept")
+    parser.add_argument("--N", type=int, nargs="?", default=128, help="grid size in x and y axes (defaults to 128)")
+    parser.add_argument("--ro", type=float, nargs="?", default=0.1, help="population size (defaults to 0.1)")
+    parser.add_argument("--max-random-step", type=int, default=10, help="maximum step size, that an actor can make")
+    parser.add_argument("--load", action="store_const", const=True, default=False, help="if present, script will load previous simulations results instead of running new ones")
+    parser.add_argument("--brownian", action="store_const", const=True, default=False, help="use Brownian motion instead of Levy Flight")
+
+    args = parser.parse_args()
+
+    if args.csv_dir is not None:
+        directory = Path(args.csv_dir).resolve()
+        if not directory.is_dir():
+            raise NotADirectoryError("{} is not a directory".format((directory)))
+    elif args.load:
+        raise ValueError("Supply a directory with csv results with the --csv_dir flag")
+
+    if args.ro < 0:
+        raise ValueError("Population density can't be lower than zero")
+    if args.max_random_step < 1:
+        raise ValueError("Max step size can't be lower than one")
+
+    return args
+
+
+
+
+
+if __name__ == "__main__":
+    main()
