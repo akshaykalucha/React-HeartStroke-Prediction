@@ -110,3 +110,77 @@ class Simulation(ABC):
                         if status2 == self.RECOVERED:
                             new_recovered.add(k)
 
+            # update walker statuses
+            for idx in new_infected:
+                infect[idx] = self.INFECTED
+                n_sick += 1
+                n_heal -= 1
+                infected_index.add(idx)
+            new_infected.clear()
+
+            for idx in new_recovered:
+                infect[idx] = self.RECOVERED
+                n_sick -= 1
+                n_dead += 1
+                infected_index.remove(idx)
+            new_recovered.clear()
+
+            # plot data
+            self.ts_sick[iteration] = n_sick
+            self.ts_dead[iteration] = n_dead
+            iteration += 1
+
+            if self.logging:
+                print(f"I:{iteration}, healthy: {self.M - n_sick - n_dead}, sick:{n_sick}, dead:{n_dead}")
+
+        self.last_iter = iteration - 1
+        return self
+
+
+    def plot(self):
+        if type(self.random_walk) is Levy:
+            walk_name = "Levy flight"
+        elif type(self.random_walk) is Brownian:
+            walk_name = "Brownian Motion"
+        else:
+            raise NotImplementedError
+
+        plt.figure()
+        plt.title("Information spread simulation, {}\nN:{}, M:{}, L:{}".format(walk_name, self.N, self.M, self.max_random_step))
+        plt.xlabel("Number of iterations")
+        plt.ylabel("% of affected population")
+        plt.plot(np.arange(self.last_iter), self.ts_sick[0:self.last_iter]/self.M * 100) # percent
+
+
+    def show(self):
+        plt.show()
+
+
+    def save(self, path: Path, filename: str):
+        files = Path().glob(filename + "*.png")
+        num = len(list(files)) + 1
+        file_path = path.joinpath(filename+ str(num) + ".png")
+        plt.savefig(file_path)
+
+    
+    @staticmethod
+    def make_file_path(directory, random_walk: RandomWalk, N, M, max_step):
+        walk_name = random_walk.get_name()
+        return Path(directory).joinpath("{}-{}N-{}M-{}L.csv".format(walk_name, N, M, max_step))
+
+
+    @staticmethod
+    def load_results_from_csv(directory, random_walk, N, M, max_step):
+        csv_path = Simulation.make_file_path(directory, random_walk, N, M, max_step)
+        is_brownian = type(random_walk) is Brownian
+        try:
+            with csv_path.open() as sim_file:
+                for sim_line in sim_file:
+                    # TODO: add option to choose Simulation A or B
+                    sim_i = SimulationA(N=N, M=M, max_random_step=max_step, csv_line=sim_line, brownian=is_brownian)
+                    yield sim_i
+
+        except FileNotFoundError:
+            pass
+
+
