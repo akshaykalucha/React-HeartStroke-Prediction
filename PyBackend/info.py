@@ -294,6 +294,27 @@ def main():
 
         plt.bar(x=self.percents, height=self.ts_max-self.ts_min, bottom=self.ts_min, color="lightgrey", width=min(self.steps))
 
+    def save(self, path: Path, filename: str):
+        files = Path(path).glob(filename + "*.png")
+        num = len(list(files)) + 1
+        file_path = path.joinpath(filename+ str(num) + ".png")
+        plt.savefig(file_path)
+        def add_result(self, num: int):
+            self.num_per_step[self.sim_idx] = num
+        self.sim_idx += 1
+        if self.sim_idx >= self.iter_per_step:
+            self.__next_step()
 
+    def __next_step(self):
+        self.ts_avg[self.current_step] = np.average(self.num_per_step)
+        self.ts_min[self.current_step] = np.min(self.num_per_step)
+        self.ts_max[self.current_step] = np.max(self.num_per_step)
+        self.ts_std[self.current_step] = np.std(self.num_per_step)
+
+        self.sim_idx = 0
+        self.current_step += 1
+
+
+        
 if __name__ == "__main__":
     main()
