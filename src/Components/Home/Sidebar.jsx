@@ -128,8 +128,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" min="0" className="inputCtrl" value={this.props.val.age} onChange={this.incrementAgeCustom} name="ageNum" id=""/>
                             <div className="controls controlAge">
-                                <button className="stepUp stepBtn" onClick={this.incrementAge}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementAge}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementAge}>+</button>
                             </div>
                             </div>
                             </div>
@@ -157,8 +157,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" className="inputCtrl" value={this.props.val.creatine} onChange={this.incrementCreatineCustom} name="Creatine" id=""/>
                             <div className="controls controlAge">
-                                <button className="stepUp stepBtn" onClick={this.incrementCreatine}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementCreatine}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementCreatine}>+</button>
                             </div>
                             </div>
                         </div>
@@ -183,8 +183,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" value={this.props.val.ejection} className="inputCtrl" onChange={this.incrementEjectionCustom} name="ejection_frac" id=""/>
                             <div className="controls controlEjection">
-                                <button className="stepUp stepBtn" onClick={this.incrementEjection}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementEjection}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementEjection}>+</button>
                             </div>
                             </div>
                         </div>
@@ -202,8 +202,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" step="0.00" className="inputCtrl" value={this.props.val.platlets} onChange={this.incrementPlatletsCustom} name="platlets" id=""/>
                             <div className="controls controlPlatlets">
-                                <button className="stepUp stepBtn" onClick={this.incrementPlatlets }>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementPlatlets}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementPlatlets }>+</button>
                             </div>
                             </div>
                         </div>
@@ -212,8 +212,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" step="0.00" className="inputCtrl" value={this.props.val.serum} onChange={this.incrementSerumCustom} name="serumC" id=""/>
                             <div className="controls controlSerumC">
-                                <button className="stepUp stepBtn" onClick={this.incrementSerum}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementSerum}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementSerum}>+</button>
                             </div>
                             </div>
                         </div>
@@ -222,8 +222,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" value={this.props.val.serumS} className="inputCtrl" onChange={this.incrementSerumSCustom} name="serumS" id=""/>
                             <div className="controls controlserumS">
-                                <button className="stepUp stepBtn" onClick={this.incrementSerumS}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementSerumS}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementSerumS}>+</button>
                             </div>
                             </div>
                         </div>
@@ -241,8 +241,8 @@ export class Sidebar extends Component {
                             <div className="inputContainer">
                             <input type="number" name="time" className="inputCtrl" value={this.props.val.time} onChange={this.incrementTimeCustom} id=""/>
                             <div className="controls controlTime">
-                                <button className="stepUp stepBtn" onClick={this.incrementTime}>+</button>
                                 <button className="stepDown stepBtn" onClick={this.decrementTime}>-</button>
+                                <button className="stepUp stepBtn" onClick={this.incrementTime}>+</button>
                             </div>
                             </div>
                         </div>
